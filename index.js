@@ -24,4 +24,4 @@ app.use('/usuarios', rotasUsuario);
 app.use('/cardapio', rotasCardapio);
 app.use(rotasIndex)
 
-app.listen(3000, ()=>console.log("Servidor rodando perfeitamente"))
+app.listen(3000, ()=>console.log("Servidor rodando perfeitamente 3000"))
