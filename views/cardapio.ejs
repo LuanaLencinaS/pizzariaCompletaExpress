@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('includes/head', {title:"Cardapio Pizzaria"}) %>    
+<body>
+    <%- include('includes/header') %> 
+
+    <main class="container mt-5">
+        <div class="row">
+            <!--Pizza 1-->
+            <%  listaDePizza.forEach((pizza, index)=>{ %>
+                <div class="col-md-4 p-2">
+                    <div class="card">
+                        <img src="/img/<%= pizza.img%>" alt="Foto da pizza" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= pizza.nome %></h5>
+                            <p>Preço da pizza: <%= pizza.preco %></p>
+                            <button class="btn btn-success">Comprar</button>
+                        </div>
+
+                        <div class="card-footer">
+                            <form action="/cardapio/deletar/<%= index %>?_method=DELETE" method="post">
+                                <button type="submit" class="btn btn-warning">
+                                Excluir
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </main>
+</body>
+</html>

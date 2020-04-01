@@ -1,0 +1,17 @@
+.card {
+    background-color: crimson;
+    color:#fff;
+}
+
+.form-cadastro {
+    width: 400px;
+    background-color: crimson;
+    padding: 10px;
+    border-radius: 15px;
+    color: #ffffff;
+}
+
+.vh-75 {
+    /* criando uma utilite */
+    height: 75vh!important;
+}
