@@ -1,35 +1,36 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<%- include("./includes/head.ejs", {title: "Cadastro de Pizza"}) %> 
+<%- include("./includes/head.ejs", {title: "Alteração de Pizza"}) %> 
 
 <body>
     <%- include("./includes/header.ejs") %>
         
-    <main class="container d-flex justify-content-center align-items-center vh-75">
+    <main class="container d-flex justify-content-center align-items-center vh-75 flex-column">
         
-        <form action="/cardapio/cadastro" method="post" enctype="multipart/form-data"  class="form-cadastro">
-            <h2>Cadastrar pizza</h2>
+        <form action="/cardapio/alterar?_method=PUT" method="POST" class="form-cadastro">
+            <h2>Alterar pizza</h2>
+            <input type="number" value="<%= posicao %>" name="posicao" hidden readonly>
             <div class="form-group">
                 <label for="nomePizza">Pizza</label>
-                <input type="text" class="form-control" id="nomePizza" name="nomePizza" placeholder="Insira uma pizza">
+                <input type="text" class="form-control" id="nomePizza" name="nomePizza" value="<%= pizza.nome %>" placeholder="Insira uma pizza">
             </div>
 
             <div class="form-group">
                 <label for="precoPizza">Preço da Pizza</label>
-                <input type="number" class="form-control" id="precoPizza"  name="precoPizza"  placeholder="Preço pizza">
+                <input type="number" class="form-control" id="precoPizza"  name="precoPizza" value="<%= pizza.preco %>"  placeholder="Preço pizza">
             </div>
 
             <div class="form-group">
-                <label for="fotoPizza">Foto da Pizza</label>
-                <input type="file" class="form-control" id="fotoPizza" name="fotoPizza">
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-success">Finalizar cadastro</button>
+                <button type="submit" class="btn btn-success">Finalizar alteração</button>
             </div>
             
         </form>
+
+        <% if(typeof(msg) != 'undefined'){ %> 
+            <div class="d-flex justify-content-end">
+                <div class="alert alert-success">
+                    <%= msg %> 
+                </div>
+            </div>
+        <% } %> 
 
     </main>
 

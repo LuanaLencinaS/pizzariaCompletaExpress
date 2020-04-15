@@ -1,26 +1,56 @@
-let cardapio = [
-    {nome:"Calamussa", preco:"R$30,00", img:'pizza1.jpg'},
-    {nome:"Frango com Catupiry", preco:"R$35,00",  img:'pizza2.jpg'},
-    {nome:"Romanesca", preco:"R$35,00",  img:'pizza3.jpg'},
-]
+const fs = require('fs');
+const path = require('path')
+
+const arquivoCardapio = path.join('cardapio.json')
 
 function listarCardapio(){
-    return cardapio
+    const listaDePizzas = JSON.parse(fs.readFileSync(arquivoCardapio, {encoding:'utf-8'}))
+
+    return listaDePizzas
 }
 
-function cadastrarPizza(nome, preco){
+function cadastrarPizza(nome, preco, nomeImg){
     //pega as infos e transfroma em um objeto, e adiciona ao cardapio
     let novaPizza = {
+        nome,
+        preco,
+        img:nomeImg
+    }
+    const listaDePizzas = JSON.parse(fs.readFileSync(arquivoCardapio, {encoding:'utf-8'}))
+
+    listaDePizzas.push(novaPizza);
+
+    fs.writeFileSync(arquivoCardapio, JSON.stringify(listaDePizzas))
+}
+
+function deletarPizza(posicao) {
+    const listaDePizzas = JSON.parse(fs.readFileSync(arquivoCardapio, {encoding:'utf-8'}))
+
+    listaDePizzas.splice(posicao, 1);
+
+    return fs.writeFileSync(arquivoCardapio, JSON.stringify(listaDePizzas))
+}
+
+function buscarPizza(posicao){
+    const listaDePizzas = JSON.parse(fs.readFileSync(arquivoCardapio, {encoding:'utf-8'}))
+
+    return listaDePizzas[posicao]
+}
+
+function atualizarPizza(nome, preco, posicao){
+    let pizza = {
         nome,
         preco,
         img:'pizza3.jpg'
     }
 
-    return cardapio.push(novaPizza);
+    var listaDePizzas = JSON.parse(fs.readFileSync(arquivoCardapio, {encoding:'utf-8'}))
+
+    listaDePizzas[posicao] = pizza;
+
+    fs.writeFileSync(arquivoCardapio, JSON.stringify(listaDePizzas))
+
+    return pizza;
 }
 
-function deletarPizza(posicao) {
-    return cardapio.splice(posicao, 1);
-}
-
-module.exports = {listarCardapio, cadastrarPizza, deletarPizza}
+module.exports = {listarCardapio, cadastrarPizza, deletarPizza, buscarPizza, atualizarPizza}
