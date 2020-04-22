@@ -3,6 +3,8 @@ const cardapioController = require('../controllers/cardapioController');
 const path = require('path')
 const multer = require('multer')
 
+const auth = require('../middleware/auth')
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, path.join('public', 'img'))
@@ -26,7 +28,7 @@ route.get('/cadastrar/:pizza/:preco', (req, res)=>{
 
 //crud cardapio:
 //read
-route.get('/ver', cardapioController.listarCardapio)
+route.get('/ver', auth, cardapioController.listarCardapio)
 
 //cadastro get e post
 route.get("/cadastro", cardapioController.formCadastro);

@@ -7,4 +7,5 @@ route.get('/:nome', (req,res)=>{
     let {nome} = req.params
     res.render('usuario', {nome})
 })
+
 module.exports = route;

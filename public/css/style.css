@@ -15,3 +15,17 @@
     /* criando uma utilite */
     height: 75vh!important;
 }
+
+.bg-rosa {
+    background-color: crimson !important;
+}
+
+.form-login-cadastro {
+    width: 300px;
+    height: 60vh;
+    margin-top: 10px;
+    background-color: crimson;
+    padding: 5px;
+    border-radius: 15px;
+    color: #ffffff;
+}
